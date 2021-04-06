@@ -6,12 +6,12 @@
       </v-app-bar>
       <v-card class="mx-auto" outlined max-width="1200">
         <v-card-title> 
-          <v-text-field label="入力欄" placeholder="ToDoの入力" outlined></v-text-field>
-            <v-btn color="primary" dark class="mb-2">追加</v-btn>
+          <v-text-field label="入力欄" placeholder="ToDoの入力" outlined v-model="task"></v-text-field>
+          <v-btn color="primary" dark class="mb-2" @click="add()">追加</v-btn>
         </v-card-title> 
-        <v-data-table :headers="headers" :things="things" :items-per-page="5" class="elevation-1">
-          <template v-slot:thing.control="{ thing }">
-            <v-btn class="mx-2" fab dark x-small color="error" @click="deleteTask(thing)">
+        <v-data-table :headers="headers" :items="items" :things-per-page="5" class="elevation-1">
+          <template v-slot:item.control="{ item }">
+            <v-btn class="mx-2" fab dark x-small color="error" @click="deleteTodo(item)">
               <v-icon dark>mdi-minus</v-icon>
             </v-btn>
           </template>  
@@ -30,7 +30,7 @@ export default {
       {
         text: "ToDo",
         sortable: true,
-        value: "title",
+        value: "task",
         width: "70%"
       },
       {
@@ -39,8 +39,16 @@ export default {
         value: "control"
       },
     ],
-    things: [],
-    title: "",
-  })  
-}
+    items: [],
+    task: "",
+  }),
+  methods: {
+    add: function(){
+        this.items.push({
+            "task": this.task,
+        });
+        this.task = "";
+    }
+  }
+}  
 </script>
