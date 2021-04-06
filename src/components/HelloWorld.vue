@@ -44,9 +44,12 @@ export default {
   }),
   methods: {
     add: function(){
-        this.items.push({
-            "task": this.task,
-        });
+      if(!this.task){
+        return;
+      }
+      this.items.push({
+          "task": this.task,
+      });
         this.task = "";
     },
     deleteTodo: function(item) {
