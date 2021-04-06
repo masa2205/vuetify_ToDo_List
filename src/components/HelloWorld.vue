@@ -17,5 +17,23 @@
 </template>
 
 <script>
-
+export default {
+  data: () => ({
+    headers: [
+      {
+        text: "ToDo",
+        sortable: true,
+        value: "task",
+        width: "70%"
+      },
+      {
+        text: "削除",
+        sortable: false,
+        value: "control"
+      },
+    ],
+    items: [],
+    task: "",
+  })  
+}
 </script>
