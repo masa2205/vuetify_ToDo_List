@@ -1,24 +1,11 @@
 # vuetify-project
 
-## Project setup
+## iconの表示
+マテリアルデザインアイコンのライブラリをインストール
 ```
-npm install
+npm install --save @mdi/font
 ```
-
-### Compiles and hot-reloads for development
+`main.js` に `@mdi/font` インポートを記述
 ```
-npm run serve
+import '@mdi/font/css/materialdesignicons.css'
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
