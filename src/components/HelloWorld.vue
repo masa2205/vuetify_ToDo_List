@@ -11,6 +11,9 @@
         </v-card-title>
         <v-data-table :headers="headers" :items="items" :things-per-page="5" class="elevation-1">
           <template v-slot:item.control="{ item }">
+            <v-btn class="mx-2" fab dark x-small color="info" @click="editteTodo(item)">
+              <v-icon>mdi-square-edit-outline</v-icon>
+            </v-btn>  
             <v-btn class="mx-2" fab dark x-small color="info" @click="deleteTodo(item)">
               <v-icon>mdi-delete</v-icon>
             </v-btn>
