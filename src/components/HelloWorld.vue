@@ -48,6 +48,9 @@ export default {
             "task": this.task,
         });
         this.task = "";
+    },
+    deleteTodo: function(item) {
+      this.items.splice(this.items.indexOf(item), 1);
     }
   }
 }  
