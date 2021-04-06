@@ -9,6 +9,13 @@
           <v-text-field label="入力欄" placeholder="ToDoの入力" outlined></v-text-field>
             <v-btn color="primary" dark class="mb-2">追加</v-btn>
         </v-card-title> 
+        <v-data-table :headers="headers" :things="things" :items-per-page="5" class="elevation-1">
+          <template v-slot:thing.control="{ thing }">
+            <v-btn class="mx-2" fab dark x-small color="error" @click="deleteTask(thing)">
+              <v-icon dark>mdi-minus</v-icon>
+            </v-btn>
+          </template>  
+        </v-data-table>
        <v-date-picker v-model="picker" reactive locale="jp-ja" :day-format="date => new Date(date).getDate()"></v-date-picker>
        <v-footer color="info" dark app>ToDo List</v-footer>
       </v-card> 
@@ -23,7 +30,7 @@ export default {
       {
         text: "ToDo",
         sortable: true,
-        value: "task",
+        value: "title",
         width: "70%"
       },
       {
@@ -32,8 +39,8 @@ export default {
         value: "control"
       },
     ],
-    items: [],
-    task: "",
+    things: [],
+    title: "",
   })  
 }
 </script>
