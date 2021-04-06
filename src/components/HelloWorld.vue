@@ -13,7 +13,10 @@
           <template v-slot:item.control="{ item }">
             <v-btn class="mx-2" fab dark x-small color="info" @click="editteTodo(item)">
               <v-icon>mdi-square-edit-outline</v-icon>
+<<<<<<< HEAD
             </v-btn>  
+=======
+>>>>>>> e8d064c832d579c638555b377d8a90b81cc4c9ee
             <v-btn class="mx-2" fab dark x-small color="info" @click="deleteTodo(item)">
               <v-icon>mdi-delete</v-icon>
             </v-btn>
