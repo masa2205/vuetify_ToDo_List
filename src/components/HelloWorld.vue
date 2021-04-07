@@ -55,7 +55,10 @@ export default {
         this.task = "";
     },
     deleteTodo: function(item) {
+      const result = confirm("削除してもよろしいですか？")
+      if(result) {
       this.items.splice(this.items.indexOf(item), 1);
+      }
     }
   }
 }
