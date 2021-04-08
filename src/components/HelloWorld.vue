@@ -17,17 +17,31 @@
           @click:append="add()" 
           append-icon="mdi-square-edit-outline">
           </v-text-field>
-          <v-btn icon ripple>
+        </v-card-title>
+        <v-btn icon ripple>
             <v-menu>
               <template v-slot:activator="{ on }">
                 <v-icon color="grey lighten-1" v-on="on">mdi-calendar-month-outline
                 </v-icon>
               </template>
-              <v-date-picker v-model="picker" reactive locale="jp-ja" :day-format="date => new Date(date).getDate()" no-title scrollable>
+              <v-date-picker
+              v-model="picker"
+              reactive locale="jp-ja"
+              :day-format="date => new Date(date).getDate()"
+              no-title
+              scrollable>
               </v-date-picker>
-            </v-menu>  
-          </v-btn>
-        </v-card-title>
+            </v-menu>
+        </v-btn>
+        <v-btn icon ripple>
+            <v-menu>
+              <template v-slot:activator="{ on }">
+                <v-icon color="grey lighten-1" v-on="on">mdi-folder
+                </v-icon>
+              </template>
+              <v-text-field solo hide-details @click.stop=""/>
+            </v-menu>
+        </v-btn>
         <v-data-table :headers="headers" :items="items" :things-per-page="5" class="elevation-1">
           <template v-slot:item.control="{ item }">
             <v-btn class="mx-2" fab dark x-small color="info" @click="editTodo(item)">
@@ -55,7 +69,12 @@ export default {
         width: "70%"
       },
       {
-        text: "Date"
+        text: "Date",
+        sortable: true,
+        value: "datetime"
+      },
+      {
+        text: "Memo",
 
       },
       {
@@ -66,6 +85,7 @@ export default {
     ],
     items: [],
     task: "",
+    datetime: ""
   }),
   methods: {
     add: function(){
@@ -74,6 +94,7 @@ export default {
       }
       this.items.push({
           "task": this.task,
+          "datetime": this.datetime
       });
         this.task = "";
     },
