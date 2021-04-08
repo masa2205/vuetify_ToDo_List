@@ -4,14 +4,14 @@
       <v-app-bar color="info" dark app>
         <v-toolbar-title>ToDo List</v-toolbar-title>
       </v-app-bar>
-      <v-card class="mx-auto" outlined max-width="1200">
+      <v-card class="mx-auto" outlined max-width="1200" @submit.prevent>
         <v-card-title>
-          <v-text-field label="入力欄" placeholder="ToDoの入力" outlined v-model="task"></v-text-field>
-          <v-btn color="primary" dark class="mb-2" @click="add()">追加</v-btn>
+          <v-text-field label="入力欄" placeholder="ToDoの入力" outlined v-model="task" @keyup.enter="add()"></v-text-field>
+            <v-btn color="primary" dark class="mb-2" @click="add()">追加</v-btn>
         </v-card-title>
         <v-data-table :headers="headers" :items="items" :things-per-page="5" class="elevation-1">
           <template v-slot:item.control="{ item }">
-            <v-btn class="mx-2" fab dark x-small color="info" @click="editteTodo(item)">
+            <v-btn class="mx-2" fab dark x-small color="info" @click="editTodo(item)">
               <v-icon>mdi-square-edit-outline</v-icon>
             </v-btn>  
             <v-btn class="mx-2" fab dark x-small color="info" @click="deleteTodo(item)">
@@ -59,6 +59,9 @@ export default {
       if(result) {
       this.items.splice(this.items.indexOf(item), 1);
       }
+    },
+    editTodo: function() {
+
     }
   }
 }
