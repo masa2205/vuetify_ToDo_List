@@ -142,6 +142,15 @@ export default {
     saveList: function(){
       localStorage.setItem('items', JSON.stringify(this.items));
     },
-  },
+    loadList: function(){
+           this.items=JSON.parse(localStorage.getItem('items'));
+           if(!this.items){
+               this.items=[];
+           }
+    },
+    mounted: function(){
+           this.loadList();
+    }
+  }
 }
 </script>
