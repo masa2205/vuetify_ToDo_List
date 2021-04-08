@@ -31,6 +31,7 @@
               no-title
               scrollable>
                 <v-btn flat color="primary" @click="picker = ' ' ">Delete</v-btn>
+                <v-btn flat color="primary" @click="$refs.menu.save(picker)">OK</v-btn>
               </v-date-picker>
             </v-menu>
         </v-btn>
