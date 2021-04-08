@@ -23,12 +23,10 @@
                 <v-icon color="grey lighten-1" v-on="on">mdi-calendar-month-outline
                 </v-icon>
               </template>
-              <v-date-picker v-model="picker" reactive locale="jp-ja" :day-format="date => new Date(date).getDate()">
-                
+              <v-date-picker v-model="picker" reactive locale="jp-ja" :day-format="date => new Date(date).getDate()" no-title scrollable>
               </v-date-picker>
             </v-menu>  
           </v-btn>
-          <span class="text-sm-left">{{headers.datetime}}</span>
         </v-card-title>
         <v-data-table :headers="headers" :items="items" :things-per-page="5" class="elevation-1">
           <template v-slot:item.control="{ item }">
@@ -54,10 +52,14 @@ export default {
         text: "ToDo",
         sortable: true,
         value: "task",
-        datetime : "",
         width: "70%"
       },
       {
+        text: "Date"
+
+      },
+      {
+        text: "Action",
         sortable: false,
         value: "control"
       },
@@ -72,7 +74,6 @@ export default {
       }
       this.items.push({
           "task": this.task,
-          datetime : "",
       });
         this.task = "";
     },
@@ -85,6 +86,6 @@ export default {
     editTodo: function() {
 
     }
-  }
+  },
 }
 </script>
