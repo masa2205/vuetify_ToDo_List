@@ -30,6 +30,7 @@
               :day-format="date => new Date(date).getDate()"
               no-title
               scrollable>
+                <v-btn flat color="primary" @click="picker = ' ' ">Delete</v-btn>
               </v-date-picker>
             </v-menu>
         </v-btn>
@@ -77,7 +78,8 @@ export default {
       },
       {
         text: "Memo",
-
+        sortable: true,
+        value: "memo"
       },
       {
         text: "Action",
@@ -87,7 +89,7 @@ export default {
     ],
     items: [],
     task: "",
-    datetime: ""
+    picker: ""
   }),
   methods: {
     add: function(){
