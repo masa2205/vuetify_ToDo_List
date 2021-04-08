@@ -33,6 +33,7 @@
               </v-date-picker>
             </v-menu>
         </v-btn>
+        <span class="text-sm-left">{{picker}}</span>
         <v-btn icon ripple>
             <v-menu>
               <template v-slot:activator="{ on }">
@@ -42,6 +43,7 @@
               <v-text-field solo hide-details @click.stop=""/>
             </v-menu>
         </v-btn>
+        <span class="text-sm-left">{{memo}}</span>
         <v-data-table :headers="headers" :items="items" :things-per-page="5" class="elevation-1">
           <template v-slot:item.control="{ item }">
             <v-btn class="mx-2" fab dark x-small color="info" @click="editTodo(item)">
@@ -71,7 +73,7 @@ export default {
       {
         text: "Date",
         sortable: true,
-        value: "datetime"
+        value: "picker"
       },
       {
         text: "Memo",
@@ -94,9 +96,10 @@ export default {
       }
       this.items.push({
           "task": this.task,
-          "datetime": this.datetime
+          "picker": this.picker
       });
         this.task = "";
+        this.picker =""
     },
     deleteTodo: function(item) {
       const result = confirm("削除してもよろしいですか？")
