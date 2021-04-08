@@ -30,7 +30,7 @@
               :day-format="date => new Date(date).getDate()"
               no-title
               scrollable>
-                <v-btn flat color="primary" @click="picker = ' ' ">Delete</v-btn>
+                <v-btn flat color="primary" @click="picker = '' ">Delete</v-btn>
                 <v-btn flat color="primary" @click="$refs.menu.save(picker)">OK</v-btn>
               </v-date-picker>
             </v-menu>
@@ -42,15 +42,35 @@
                 <v-icon color="grey lighten-1" v-on="on">mdi-folder
                 </v-icon>
               </template>
-              <v-text-field solo append-icon="mdi-square-edit-outline" hide-details v-model="memo" @click.stop="">
+              <v-text-field 
+              solo 
+              append-icon="mdi-square-edit-outline" 
+              label="入力欄" 
+              placeholder="Memoの追加" 
+              hide-details 
+              v-model="memo" 
+              @click.stop="">
               </v-text-field>
             </v-menu>
         </v-btn>
-        <span class="text-sm-left">{{memo}}</span>
+        <span class="text-sm-left" >{{memo}}</span>
         <v-data-table :headers="headers" :items="items" :things-per-page="5" class="elevation-1">
           <template v-slot:item.control="{ item }">
             <v-btn class="mx-2" fab dark x-small color="info" @click="editTodo(item)">
-              <v-icon>mdi-square-edit-outline</v-icon>
+              <v-menu>
+                <template v-slot:activator="{ on }">
+                  <v-icon color="grey lighten-1" v-on="on">mdi-square-edit-outline
+                  </v-icon>
+                </template>
+                <v-text-field 
+                solo 
+                append-icon="mdi-square-edit-outline" 
+                hide-details 
+                label="入力欄"
+                placeholder="ToDoの編集"
+                @click.stop="">
+                </v-text-field>
+              </v-menu>
             </v-btn>  
             <v-btn class="mx-2" fab dark x-small color="info" @click="deleteTodo(item)">
               <v-icon>mdi-delete</v-icon>
@@ -115,7 +135,9 @@ export default {
       }
     },
     editTodo: function() {
-
+      if(!this.task){
+        return;
+      }
     }
   },
 }
