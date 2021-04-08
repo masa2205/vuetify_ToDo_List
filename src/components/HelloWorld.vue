@@ -6,7 +6,29 @@
       </v-app-bar>
       <v-card class="mx-auto" outlined max-width="1200" @submit.prevent>
         <v-card-title>
-          <v-text-field label="入力欄" placeholder="ToDoの入力" outlined v-model="task" @keyup.enter="add()" @click:append="add()" append-icon="mdi-square-edit-outline"></v-text-field>
+          <v-text-field 
+          label="入力欄" 
+          placeholder="ToDoの入力" 
+          outlined
+          single-line
+          hide-details
+          v-model="task" 
+          @keyup.enter="add()" 
+          @click:append="add()" 
+          append-icon="mdi-square-edit-outline">
+          </v-text-field>
+          <v-btn icon ripple>
+            <v-menu>
+              <template v-slot:activator="{ on }">
+                <v-icon color="grey lighten-1" v-on="on">mdi-calendar-month-outline
+                </v-icon>
+              </template>
+              <v-date-picker v-model="picker" reactive locale="jp-ja" :day-format="date => new Date(date).getDate()">
+                
+              </v-date-picker>
+            </v-menu>  
+          </v-btn>
+          <span class="text-sm-left">{{headers.datetime}}</span>
         </v-card-title>
         <v-data-table :headers="headers" :items="items" :things-per-page="5" class="elevation-1">
           <template v-slot:item.control="{ item }">
@@ -18,7 +40,6 @@
             </v-btn>
           </template>
         </v-data-table>
-       <v-date-picker v-model="picker" reactive locale="jp-ja" :day-format="date => new Date(date).getDate()"></v-date-picker>
        <v-footer color="info" dark app>ToDo List</v-footer>
       </v-card> 
     </v-container>
