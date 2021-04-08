@@ -112,7 +112,7 @@ export default {
     items: [],
     task: "",
     picker: "",
-    memo:"memo"
+    memo:""
   }),
   methods: {
     add: function(){
@@ -124,21 +124,24 @@ export default {
           "picker": this.picker,
           "memo": this.memo
       });
-        this.task = "";
-        this.picker = "";
-        this.memo = ""
+      this.task = "";
+      this.picker = "";
+      this.memo = ""
+      this.saveList();
     },
     deleteTodo: function(item) {
       const result = confirm("削除してもよろしいですか？")
       if(result) {
       this.items.splice(this.items.indexOf(item), 1);
       }
+      this.saveList();
     },
     editTodo: function() {
-      if(!this.task){
-        return;
-      }
-    }
+      
+    },
+    saveList: function(){
+      localStorage.setItem('items', JSON.stringify(this.items));
+    },
   },
 }
 </script>
