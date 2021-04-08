@@ -42,7 +42,8 @@
                 <v-icon color="grey lighten-1" v-on="on">mdi-folder
                 </v-icon>
               </template>
-              <v-text-field solo hide-details @click.stop=""/>
+              <v-text-field solo append-icon="mdi-square-edit-outline" hide-details v-model="memo" @click.stop="">
+              </v-text-field>
             </v-menu>
         </v-btn>
         <span class="text-sm-left">{{memo}}</span>
@@ -90,7 +91,8 @@ export default {
     ],
     items: [],
     task: "",
-    picker: ""
+    picker: "",
+    memo:"memo"
   }),
   methods: {
     add: function(){
@@ -99,10 +101,12 @@ export default {
       }
       this.items.push({
           "task": this.task,
-          "picker": this.picker
+          "picker": this.picker,
+          "memo": this.memo
       });
         this.task = "";
-        this.picker =""
+        this.picker = "";
+        this.memo = ""
     },
     deleteTodo: function(item) {
       const result = confirm("削除してもよろしいですか？")
