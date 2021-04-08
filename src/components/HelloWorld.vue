@@ -6,8 +6,7 @@
       </v-app-bar>
       <v-card class="mx-auto" outlined max-width="1200" @submit.prevent>
         <v-card-title>
-          <v-text-field label="入力欄" placeholder="ToDoの入力" outlined v-model="task" @keyup.enter="add()"></v-text-field>
-            <v-btn color="primary" dark class="mb-2" @click="add()">追加</v-btn>
+          <v-text-field label="入力欄" placeholder="ToDoの入力" outlined v-model="task" @keyup.enter="add()" @click:append="add()" append-icon="mdi-square-edit-outline"></v-text-field>
         </v-card-title>
         <v-data-table :headers="headers" :items="items" :things-per-page="5" class="elevation-1">
           <template v-slot:item.control="{ item }">
@@ -34,6 +33,7 @@ export default {
         text: "ToDo",
         sortable: true,
         value: "task",
+        datetime : "",
         width: "70%"
       },
       {
@@ -51,6 +51,7 @@ export default {
       }
       this.items.push({
           "task": this.task,
+          datetime : "",
       });
         this.task = "";
     },
