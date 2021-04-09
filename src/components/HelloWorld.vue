@@ -24,7 +24,7 @@
             </v-text-field>
           </v-card-title>
           <v-btn icon ripple>
-              <v-menu>
+              <v-menu transition="fab-transition">
                 <template v-slot:activator="{ on }">
                   <v-icon color="grey lighten-1" v-on="on">mdi-calendar-month-outline
                   </v-icon>
@@ -42,7 +42,7 @@
           </v-btn>
           <span class="text-sm-left">{{picker}}</span>
           <v-btn icon ripple>
-              <v-menu>
+              <v-menu transition="scale-transition">
                 <template v-slot:activator="{ on }">
                   <v-icon color="grey lighten-1" v-on="on">mdi-alarm
                   </v-icon>
@@ -58,7 +58,7 @@
           </v-btn>
           <span class="text-sm-left">{{time}}</span>
           <v-btn icon ripple>
-              <v-menu>
+              <v-menu transition="fab-transition">
                 <template v-slot:activator="{ on }">
                   <v-icon color="grey lighten-1" v-on="on">mdi-folder
                   </v-icon>
@@ -78,26 +78,26 @@
           <span class="text-sm-left" >{{memo}}</span>
           <v-data-table :headers="headers" :items="items" :things-per-page="5" class="elevation-1">
             <template v-slot:item.control="{ item }">
-              <v-btn class="mx-2" fab dark x-small color="info" @click="editTodo(item)">
-                <v-menu>
-                  <template v-slot:activator="{ on }">
-                    <v-icon color="grey lighten-1" v-on="on">mdi-square-edit-outline
-                    </v-icon>
-                  </template>
-                  <v-text-field
-                  single-line
-                  solo 
-                  append-icon="mdi-square-edit-outline" 
-                  hide-details 
-                  label="入力欄"
-                  placeholder="ToDoの編集"
-                  @click.stop="">
-                  </v-text-field>
-                </v-menu>
-              </v-btn>  
-              <v-btn class="mx-2" fab dark x-small color="info" @click="deleteTodo(item)">
-                <v-icon>mdi-delete</v-icon>
-              </v-btn>
+                <v-btn class="mx-2" fab dark x-small color="info" @click="editTodo(item)">
+                  <v-menu transition="scale-transition">
+                    <template v-slot:activator="{ on }">
+                      <v-icon color="grey lighten-1" v-on="on">mdi-square-edit-outline
+                      </v-icon>
+                    </template>
+                    <v-text-field
+                    single-line
+                    solo 
+                    append-icon="mdi-square-edit-outline" 
+                    hide-details 
+                    label="入力欄"
+                    placeholder="ToDoの編集"
+                    @click.stop="">
+                    </v-text-field>
+                  </v-menu>
+                </v-btn>  
+                <v-btn class="mx-2" fab dark x-small color="info" @click="deleteTodo(item)">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
             </template>
           </v-data-table>
          <v-footer color="#4DD0E1" dark app class="font-italic">ToDo List</v-footer>
