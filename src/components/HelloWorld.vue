@@ -4,11 +4,11 @@
       <v-app-bar color="info" dark app>
         <v-toolbar-title>ToDo List</v-toolbar-title>
       </v-app-bar>
-      <v-card class="mx-auto" outlined max-width="1200" @submit.prevent>
+      <v-card class="mx-auto" outlined max-width="1600" @submit.prevent>
         <v-card-title>
           <v-text-field 
           label="入力欄" 
-          placeholder="ToDoの入力" 
+          placeholder="ToDoの入力"
           outlined
           single-line
           hide-details
@@ -39,10 +39,27 @@
         <v-btn icon ripple>
             <v-menu>
               <template v-slot:activator="{ on }">
+                <v-icon color="grey lighten-1" v-on="on">mdi-alarm
+                </v-icon>
+              </template>
+              <v-time-picker
+              v-model="time"
+              ampm-in-title
+              format="24hr">
+                <v-btn flat color="primary" @click="time = '' ">Delete</v-btn>
+                <v-btn flat color="primary" @click="$refs.menu.save(time)">OK</v-btn>
+              </v-time-picker>
+            </v-menu>
+        </v-btn>
+        <span class="text-sm-left">{{time}}</span>
+        <v-btn icon ripple>
+            <v-menu>
+              <template v-slot:activator="{ on }">
                 <v-icon color="grey lighten-1" v-on="on">mdi-folder
                 </v-icon>
               </template>
-              <v-text-field 
+              <v-text-field
+              single-line
               solo 
               append-icon="mdi-square-edit-outline" 
               label="入力欄" 
@@ -62,7 +79,8 @@
                   <v-icon color="grey lighten-1" v-on="on">mdi-square-edit-outline
                   </v-icon>
                 </template>
-                <v-text-field 
+                <v-text-field
+                single-line
                 solo 
                 append-icon="mdi-square-edit-outline" 
                 hide-details 
@@ -95,12 +113,17 @@ export default {
       },
       {
         text: "Date",
-        sortable: true,
+        sortable: false,
         value: "picker"
       },
       {
+        text: "Time",
+        sortable: false,
+        value: "time"
+      },
+      {
         text: "Memo",
-        sortable: true,
+        sortable: false,
         value: "memo"
       },
       {
@@ -112,6 +135,7 @@ export default {
     items: [],
     task: "",
     picker: "",
+    time: "",
     memo:""
   }),
   methods: {
@@ -122,10 +146,12 @@ export default {
       this.items.push({
           "task": this.task,
           "picker": this.picker,
+          "time": this.time,
           "memo": this.memo
       });
       this.task = "";
       this.picker = "";
+      this.time = "";
       this.memo = ""
       this.saveList();
     },
