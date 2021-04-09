@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar color="#4DD0E1" dark app>
-      <v-toolbar-title>ToDo List</v-toolbar-title>
+      <v-toolbar-title class="font-italic">ToDo List</v-toolbar-title>
     </v-app-bar>
     <v-img
      lazy-src="https://picsum.photos/id/11/10/6"
@@ -19,7 +19,7 @@
             hide-details
             v-model="task" 
             @keyup.enter="add()" 
-            @click:append="add()" 
+            @click:append="add()"
             append-icon="mdi-square-edit-outline">
             </v-text-field>
           </v-card-title>
@@ -100,10 +100,10 @@
               </v-btn>
             </template>
           </v-data-table>
-         <v-footer color="#4DD0E1" dark app>ToDo List</v-footer>
+         <v-footer color="#4DD0E1" dark app class="font-italic">ToDo List</v-footer>
         </v-card> 
       </v-container>
-    </v-img>  
+    </v-img>
   </v-app>
 </template>
 
@@ -169,7 +169,7 @@ export default {
       this.saveList();
     },
     editTodo: function() {
-      
+      this.items[0] = ""
     },
     saveList: function(){
       localStorage.setItem('items', JSON.stringify(this.items));
